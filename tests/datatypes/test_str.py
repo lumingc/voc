@@ -778,7 +778,6 @@ class StrTests(TranspileTestCase):
         print(s1.splitlines(True))
         """)
 
-
 class UnaryStrOperationTests(UnaryOperationTestCase, TranspileTestCase):
     data_type = 'str'
 
