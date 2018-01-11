@@ -574,7 +574,11 @@ public class Complex extends org.python.types.Object {
             args = {"other"}
     )
     public org.python.Object __rmul__(org.python.Object other) {
-        throw new org.python.exceptions.NotImplementedError("complex.__rmul__() has not been implemented.");
+        if (other instanceof org.python.types.Bool || other instanceof org.python.types.Int
+                || other instanceof org.python.types.Complex || other instanceof  org.python.types.Float) {
+            return __mul__(other);
+            }
+        return org.python.types.NotImplementedType.NOT_IMPLEMENTED;
     }
 
     @org.python.Method(

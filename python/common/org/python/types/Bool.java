@@ -470,7 +470,20 @@ public class Bool extends org.python.types.Object {
             args = {"other"}
     )
     public org.python.Object __rmul__(org.python.Object other) {
-        throw new org.python.exceptions.NotImplementedError("bool.__rmul__() has not been implemented.");
+        if (other instanceof org.python.types.Bool) {
+            boolean other_bool = ((org.python.types.Bool) other).value;
+            if (other_bool && value) {
+                return new org.python.types.Int(1);
+            }
+            return new org.python.types.Int(0);
+        }
+        else if (other instanceof  org.python.types.Int) {
+            if (value) {
+                return other;
+            }
+            return new org.python.types.Int(0);
+        }
+        return org.python.types.NotImplementedType.NOT_IMPLEMENTED;
     }
 
     @org.python.Method(
